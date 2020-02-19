@@ -4,7 +4,7 @@ session_config:
 
 
 intents:
-  - greet
+  - greet: {triggers: action_greet}
   - search_train
   - enter_data
 

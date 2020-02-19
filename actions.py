@@ -9,6 +9,7 @@
 import logging
 import json
 import requests
+from rasa_sdk.events import UserUtteranceReverted
 from typing import Any, Dict, List, Text, Union, Optional
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
@@ -16,6 +17,16 @@ from rasa_sdk.forms import FormAction
 from discovery import QueryAPI
 
 logger = logging.getLogger(__name__)
+
+class ActionGreetUser(Action):
+    """Revertible mapped action for utter_greet"""
+
+    def name(self):
+        return "action_greet"
+
+    def run(self, dispatcher, tracker, domain):
+        dispatcher.utter_template("utter_greet", tracker)
+        return [UserUtteranceReverted()]
 
 class TrainForm(FormAction):
 

@@ -19,7 +19,7 @@ responses:
   utter_ask_train_channel:
     - text: "请输入要查询的渠道:1-掌上生活,2-手机银行"
   utter_ask_train_order_id:
-    - text: "{train_channel},请输入订单号"
+    - text: "请输入订单号"
 
 slots:
     train_channel:

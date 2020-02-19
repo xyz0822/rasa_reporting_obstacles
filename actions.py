@@ -47,11 +47,7 @@ class TrainForm(FormAction):
         tracker: Tracker,
         domain: Dict[Text, Any],
     ) -> List[Dict]:
-            #  req = QueryAPI("http://localhost:53345/weatherforecast")
-            #  channel=tracker.get_slot("train_channel")
-            #  order_id=tracker.get_slot("train_order_id")
              kv={"train_channel":tracker.get_slot("train_channel"),"train_order_id":tracker.get_slot("train_order_id")}
-            #  req.search(kv)
              headers = {"Content-Type": "application/json; charset=utf-8"}
              res = requests.get(url="http://www.baidu.com", params=kv, headers=headers)
              dispatcher.utter_message("准备信息完毕")

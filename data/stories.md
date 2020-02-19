@@ -2,7 +2,6 @@
 * greet
   - utter_greet
 
-
 ## trains
 * greet
   - utter_greet

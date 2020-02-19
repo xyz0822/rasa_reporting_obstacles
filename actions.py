@@ -8,6 +8,7 @@
 # This is a simple example for a custom action which utters "Hello World!"
 import logging
 import json
+import requests
 from typing import Any, Dict, List, Text, Union, Optional
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
@@ -46,9 +47,13 @@ class TrainForm(FormAction):
         tracker: Tracker,
         domain: Dict[Text, Any],
     ) -> List[Dict]:
-             req = QueryAPI("http://localhost:53345/weatherforecast")
-             channel=tracker.get_slot("train_channel")
-             order_id=tracker.get_slot("train_order_id")
-             req.search("?train_channel="+channel+"&train_order_id="+order_id)
-             dispatcher.utter_message("Thanks for getting in touch, we’ll contact you soon")
+            #  req = QueryAPI("http://localhost:53345/weatherforecast")
+            #  channel=tracker.get_slot("train_channel")
+            #  order_id=tracker.get_slot("train_order_id")
+             kv={"train_channel":tracker.get_slot("train_channel"),"train_order_id":tracker.get_slot("train_order_id")}
+            #  req.search(kv)
+             headers = {"Content-Type": "application/json; charset=utf-8"}
+             res = requests.get(url="http://www.baidu.com", params=kv, headers=headers)
+             dispatcher.utter_message("准备信息完毕")
+             dispatcher.utter_message("Ok,请求url:www.baidu.com,返回的值:"+res.text)
              return []

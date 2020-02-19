@@ -1,0 +1,31 @@
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+
+
+intents:
+  - greet
+  - search_train
+  - enter_data
+
+actions:
+- utter_greet
+- utter_ask_train_channel
+- utter_ask_train_order_id
+
+responses:
+  utter_greet:
+    - text: "你好,我能帮助你什么?"
+  utter_ask_train_channel:
+    - text: "请输入要查询的渠道:1-掌上生活,2-手机银行"
+  utter_ask_train_order_id:
+    - text: "{train_channel},请输入订单号"
+
+slots:
+    train_channel:
+      type: unfeaturized
+    train_order_id:
+      type: unfeaturized
+
+forms:
+    - train_form

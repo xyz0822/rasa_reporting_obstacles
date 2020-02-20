@@ -1,12 +1,40 @@
 # Configuration for Rasa NLU.
 # https://rasa.com/docs/rasa/nlu/components/
-language: en
-pipeline: supervised_embeddings
-
-# Configuration for Rasa Core.
-# https://rasa.com/docs/rasa/core/policies/
+language: zh
+pipeline:
+# - max_history: 5
+- name: JiebaTokenizer
+  dictionary_path: "data/nlu/lookups"
+- name: RegexFeaturizer
+- name: CRFEntityExtractor
+  features: [
+              ["low", "title", "upper"],
+              ["bias", "low", "prefix5", "prefix2", "suffix5", "suffix3",
+               "suffix2", "upper", "title", "digit", "pattern"],
+              ["low", "title", "upper"]
+            ]
+- name: CountVectorsFeaturizer
+  OOV_token: oov
+  token_pattern: (?u)\b\w+\b
+- name: CountVectorsFeaturizer
+  analyzer: char_wb
+  min_ngram: 1
+  max_ngram: 4
+- name: EmbeddingIntentClassifier
+  epochs: 50
+  loss_type: margin
+- name: EntitySynonymMapper
 policies:
-  - name: MemoizationPolicy
-  - name: KerasPolicy
-  - name: MappingPolicy
-  - name: FormPolicy
+- name: EmbeddingPolicy
+  max_history: 10
+  epochs: 20
+  batch_size:
+  - 32
+  - 64
+#- max_history: 6
+#  name: AugmentedMemoizationPolicy
+- core_threshold: 0.3
+  name: TwoStageFallbackPolicy
+  nlu_threshold: 0.8
+- name: FormPolicy
+- name: MappingPolicy

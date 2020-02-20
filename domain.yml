@@ -2,30 +2,61 @@ session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
 
-
 intents:
-  - greet: {triggers: action_greet}
-  - search_train
-  - enter_data
+  - greet
+  - query_train_refund
+  - deny
+  - bye
+  - out_of_scope
 
 actions:
-- utter_greet
-- utter_ask_train_channel
-- utter_ask_train_order_id
+  - utter_greet
+  - utter_ask_search_channel
+  - utter_ask_train_channel
+  - utter_ask_train_status
+  - utter_ask_train_order_id
+  - utter_how_can_help
+  - utter_whatami
+  - utter_goodbye
 
 responses:
   utter_greet:
-    - text: "你好,我能帮助你什么?"
+    - text: "你好,有什么可以帮到的地方"
+  utter_ask_search_channel:
+    - text: "请选择需要查询的业务"
+  utter_ask_train_status:
+    - text: "查输入要查询的火车票相关状态(支付状态,退款状态等)"
   utter_ask_train_channel:
-    - text: "请输入要查询的渠道:1-掌上生活,2-手机银行"
+    - text: "请输入要查询的渠道(掌上生活或手机银行)"
   utter_ask_train_order_id:
-    - text: "请输入订单号"
+    - text: "请输入订单号查询"
+  utter_how_can_help:
+    - text: "有什么可以帮您的嘛？"
+  utter_whatami:
+    - text: "你好，我是小智机器人，我可以作如下事情：
+            1、查询掌上生活/手机银行火车票支付状态
+            2、查询掌上生活/手机银行火车票退款状态"
+  utter_goodbye:
+    - text: "再见"
+
+entities:
+  - search_channel
+  - train_channel
+  - train_order_id
+  - train_status
 
 slots:
+    search_channel:
+      type: unfeaturized
     train_channel:
       type: unfeaturized
     train_order_id:
       type: unfeaturized
+    train_status:
+      type: categorical
+      values:
+        - 支付状态
+        - 退款状态
 
 forms:
-    - train_form
+    - query_train_refund_form

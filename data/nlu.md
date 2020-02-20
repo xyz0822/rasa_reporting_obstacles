@@ -1,25 +1,63 @@
 ## intent:greet
-- hey
-- hello
-- hi
 - 你好
-- 好
-- 早
-- 喂
-- 哈喽
 - 嗨
+- 嘿
+- 早上好
+- 中午好
+- 晚上好
+- 您好
 
-## intent:search_train
-- 我想查询火车票
-- 查询火车票
-- 查询火车
-- 查火车票
-- 火车票
-- 火车
 
-## intent:enter_data
+## intent:deny
+- 否
+- 不
+- 不 谢谢
+- 不用了
+- 给的提示都不对
+- 不好
+- 不同意
+- 拒绝
+- 不要
+- 不想
+- 不了
+- 不 谢谢 再见
+- 没有
+- 我不想继续了
+- 我不想查了
+
+## intent:bye
+- 再见
+- 下次见
+- 再会
+
+
+## intent:query_train_refund
 - [掌上生活](train_channel)
-- [掌生](train_channel)
 - [手机银行](train_channel)
-- [1](train_channel)
-- [2](train_channel)
+- 查询[掌上生活](train_channel)[火车票](search_channel)[退款状态](train_status)
+- [掌上生活](train_channel)[火车票](search_channel)[退款状态](train_status)
+- [掌生](train_channel)[火车](search_channel)[退款](train_status)
+- [掌生](train_channel)[火车票](search_channel)[退款状态](train_status)
+- 订单号:[12345678](train_order_id)
+- 订单号[12345678](train_order_id)
+- 订单[12345678](train_order_id)
+- [23456789](train_order_id)
+- [00029342](train_order_id)
+
+## regex:train_order_id
+- [0-9]{8}
+
+
+## lookup: train
+data/nlu/lookups/train.txt
+
+
+## intent:out_of_scope
+- 你是谁？
+- 这个例子主要讲什么
+- 实现了什么功能
+- 有哪些功能
+- 这个例子演示了哪些功能
+- 解决了什么问题
+- 这是什么？
+- 这是啥？

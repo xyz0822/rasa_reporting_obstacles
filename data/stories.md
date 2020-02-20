@@ -8,7 +8,9 @@
 ## query_train
 * greet
     - utter_greet
-* query_train_refund
-    - query_train_refund_form
-    - form{"name":"query_train_refund_form"}
+* query_train
+    - query_train_form
+    - form{"name":"query_train_form"}
     - form{"name":null}
+* deny
+  - utter_greed_help

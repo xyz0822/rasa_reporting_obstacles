@@ -4,7 +4,7 @@ session_config:
 
 intents:
   - greet
-  - query_train_refund
+  - query_train
   - deny
   - bye
   - out_of_scope
@@ -22,6 +22,12 @@ actions:
 responses:
   utter_greet:
     - text: "你好,有什么可以帮到的地方"
+  utter_how_can_help:
+    - text: "有什么可以帮您的嘛？"
+  utter_whatami:
+    - text: "你好，我是小智机器人，我可以作如下事情：
+            1、查询掌上生活/手机银行火车票支付状态
+            2、查询掌上生活/手机银行火车票退款状态"
   utter_ask_search_channel:
     - text: "请输入需要查询的内容。
             如：
@@ -33,15 +39,12 @@ responses:
               支付状态
               退款状态"
   utter_ask_train_channel:
-    - text: "请输入要查询的渠道(掌上生活或手机银行)"
+    - text: "请输入要查询的渠道
+             如：掌上生活"
   utter_ask_train_order_id:
     - text: "请输入11位出行易订单号，如：51245634826"
-  utter_how_can_help:
-    - text: "有什么可以帮您的嘛？"
-  utter_whatami:
-    - text: "你好，我是小智机器人，我可以作如下事情：
-            1、查询掌上生活/手机银行火车票支付状态
-            2、查询掌上生活/手机银行火车票退款状态"
+  utter_greed_help:
+    - text: "很高兴为您服务！"
   utter_goodbye:
     - text: "再见"
 
@@ -72,4 +75,4 @@ slots:
         - 退款状态
 
 forms:
-    - query_train_refund_form
+    - query_train_form

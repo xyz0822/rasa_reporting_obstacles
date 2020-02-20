@@ -1,6 +1,9 @@
 import logging
 import json
 import requests
+import jieba
+import os
+
 from rasa_sdk.events import UserUtteranceReverted
 from typing import Any, Dict, List, Text, Union, Optional
 from rasa_sdk import Action, Tracker
@@ -8,9 +11,17 @@ from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.forms import FormAction
 from discovery import QueryAPI
 
-class QueryTrainRefundForm(FormAction):
+
+project_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+train_path = f'{project_path}/rasa_reporting_obstacles/data/nlu/lookups/train.txt'
+jieba.load_userdict(train_path)
+
+with open(train_path, encoding='utf8') as f:
+    STOCK_SET = set(f.read().split('\n'))
+
+class QueryTrainForm(FormAction):
     def name(self) -> Text:
-        return 'query_train_refund_form'
+        return 'query_train_form'
 
     @staticmethod
     def required_slots(Tracker):
@@ -28,10 +39,6 @@ class QueryTrainRefundForm(FormAction):
              kv={
                  "train_channel":tracker.get_slot("train_channel"),
                  "train_order_id":tracker.get_slot("train_order_id"),
-                 "purpose_codes":"ADULT",
-                 "leftTicketDTO.from_station":"SHH",
-                 "leftTicketDTO.to_station":"BJP",
-                 "leftTicketDTO.train_date":"2020-03-20"
                  }
              headers = {"Content-Type": "application/json; charset=utf-8"}
              res = requests.get(url="http://t.weather.sojson.com/api/weather/city/101030100", params=kv, headers=headers)

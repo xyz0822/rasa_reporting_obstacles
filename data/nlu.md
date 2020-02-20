@@ -32,20 +32,28 @@
 
 
 ## intent:query_train_refund
+- 查询[掌上生活](train_channel)[火车票](search_channel)
+- 查询[掌上生活](train_channel)[火车票](search_channel)订单
+- 我想查询[掌上生活](train_channel)[火车票](search_channel)订单[退款状态](train_status)
+- 我想查询[掌上生活](train_channel)[火车票](search_channel)订单[退款状态](train_status)
+- 查询[掌上生活](train_channel)[火车票](search_channel)[退款状态](train_status)
+- 查询[掌上生活](train_channel)[火车票](search_channel)订单[退款状态](train_status)
+- [掌上生活](train_channel)[火车票](search_channel)[退款状态](train_status)
+- [掌上生活](train_channel)[火车票](search_channel)订单[退款状态](train_status)
+- [掌生](train_channel)[火车票](search_channel)[退款状态](train_status)
+- [掌生](train_channel)[火车票](search_channel)订单[退款状态](train_status)
 - [掌上生活](train_channel)
 - [手机银行](train_channel)
-- 查询[掌上生活](train_channel)[火车票](search_channel)[退款状态](train_status)
-- [掌上生活](train_channel)[火车票](search_channel)[退款状态](train_status)
-- [掌生](train_channel)[火车](search_channel)[退款](train_status)
-- [掌生](train_channel)[火车票](search_channel)[退款状态](train_status)
-- 订单号:[12345678](train_order_id)
-- 订单号[12345678](train_order_id)
-- 订单[12345678](train_order_id)
-- [23456789](train_order_id)
-- [00029342](train_order_id)
+- [退款状态](train_status)
+- [火车票](search_channel)订单
+- 订单号:[12345678111](train_order_id)
+- 订单号[12345678111](train_order_id)
+- 订单[12345678222](train_order_id)
+- [23456789333](train_order_id)
+- [00029342444](train_order_id)
 
 ## regex:train_order_id
-- [0-9]{8}
+- [0-9]{11}
 
 
 ## lookup: train

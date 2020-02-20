@@ -35,7 +35,7 @@ class QueryTrainRefundForm(FormAction):
                  }
              headers = {"Content-Type": "application/json; charset=utf-8"}
              res = requests.get(url="http://t.weather.sojson.com/api/weather/city/101030100", params=kv, headers=headers)
-             dispatcher.utter_message("已获取到信息,渠道:"+tracker.get_slot("train_channel")+",订单号:"+tracker.get_slot("train_order_id"))
+             dispatcher.utter_message("已获取到信息,业务："+tracker.get_slot("search_channel")+",渠道:"+tracker.get_slot("train_channel")+",订单号:"+tracker.get_slot("train_order_id"))
              dispatcher.utter_message("示例:请求天气查询接口")
              dispatcher.utter_message(res.text)
              return []

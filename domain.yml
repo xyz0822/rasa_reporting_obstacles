@@ -8,7 +8,7 @@ intents:
   - deny
   - bye
   - out_of_scope
-
+  - utter_whatami
 actions:
   - utter_greet
   - utter_ask_search_channel
@@ -23,13 +23,19 @@ responses:
   utter_greet:
     - text: "你好,有什么可以帮到的地方"
   utter_ask_search_channel:
-    - text: "请选择需要查询的业务"
+    - text: "请输入需要查询的内容。
+            如：
+              掌上生活火车票退款状态
+              掌上生活火车票支付状态"
   utter_ask_train_status:
-    - text: "查输入要查询的火车票相关状态(支付状态,退款状态等)"
+    - text: "请输入要查询的火车票相关状态
+            如：
+              支付状态
+              退款状态"
   utter_ask_train_channel:
     - text: "请输入要查询的渠道(掌上生活或手机银行)"
   utter_ask_train_order_id:
-    - text: "请输入订单号查询"
+    - text: "请输入11位出行易订单号，如：51245634826"
   utter_how_can_help:
     - text: "有什么可以帮您的嘛？"
   utter_whatami:
@@ -47,9 +53,16 @@ entities:
 
 slots:
     search_channel:
-      type: unfeaturized
+      type: categorical
+      values:
+        - 火车票
+        - 门票
     train_channel:
-      type: unfeaturized
+      type: categorical
+      values:
+        - 掌上生活
+        - 掌生
+        - 手机银行
     train_order_id:
       type: unfeaturized
     train_status:
